@@ -4,7 +4,7 @@ import CryptoCurrency from '@/components/CryptoCurrency';
 
 const routes = [
   {
-    path: '/MariaDani/binance_order-book',
+    path: '/binance_order-book',
     component: OrderBook
   },
 
