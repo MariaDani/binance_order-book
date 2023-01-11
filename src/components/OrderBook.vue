@@ -75,8 +75,8 @@ export default {
             this.ws.onmessage = async e => {
                 let data = JSON.parse(e.data);
                 let [asksCreated, bidsCreated] = [
-                    data.a.filter(item => item[1] !== 0),
-                    data.b.filter(item => item[1] !== 0)
+                    data.a.filter(item => item[1] != 0),
+                    data.b.filter(item => item[1] != 0)
                 ];
                 this.asks.splice(this.asks.length - asksCreated.length, asksCreated.length);
                 this.bids.splice(this.bids.length - bidsCreated.length, bidsCreated.length);
@@ -88,8 +88,8 @@ export default {
         async createSnapsot() {
             const axios = require('axios');
             let snapshot = await axios.get(`https://api.binance.com/api/v3/depth?symbol=${this.symbol}&limit=500`);
-            this.bids = snapshot.data.bids;
-            this.asks = snapshot.data.asks;
+            this.bids = snapshot.data.bids.reverse();
+            this.asks = snapshot.data.asks.reverse();
         }
     }
 }
